@@ -1,25 +1,29 @@
-// TODO: Fix the compiler error on this function.
 fn picky_eater(food: &str) -> &str {
     if food == "strawberry" {
         "Yummy!"
+    } else if food == "potato" {
+        "I guess I can eat that."
     } else {
-        1
+        "No thanks!"
     }
 }
 
 fn main() {
-    // You can optionally experiment here.
+    let food1 = "potato";
+    let food2 = "blueberry";
+    let eater1 = picky_eater(food1);
+    let eater2 = picky_eater(food2);
+
+    println!("Food = {food1}, Answer = {eater1}");
+    println!("Food = {food2}, Answer = {eater2}");
 }
 
-// TODO: Read the tests to understand the desired behavior.
-// Make all tests pass without changing them.
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn yummy_food() {
-        // This means that calling `picky_eater` with the argument "food" should return "Yummy!".
         assert_eq!(picky_eater("strawberry"), "Yummy!");
     }
 
