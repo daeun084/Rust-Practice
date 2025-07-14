@@ -1,4 +1,4 @@
 fn main() {
-    // TODO: Fix the code to print "Hello world!".
-    printline!("Hello world!");
+    // 올바른 println! 함수를 이용해 메세지 출력
+    println!("Hello world!");
 }
