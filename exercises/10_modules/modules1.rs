@@ -1,11 +1,10 @@
-// TODO: Fix the compiler error about calling a private function.
 mod sausage_factory {
-    // Don't let anybody outside of this module see this!
     fn get_secret_recipe() -> String {
         String::from("Ginger")
     }
 
-    fn make_sausage() {
+    // public 함수를 이용해 접근
+    pub fn make_sausage() {
         get_secret_recipe();
         println!("sausage!");
     }

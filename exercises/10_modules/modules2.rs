@@ -1,10 +1,8 @@
-// You can bring module paths into scopes and provide new names for them with
-// the `use` and `as` keywords.
-
 mod delicious_snacks {
-    // TODO: Add the following two `use` statements after fixing them.
-    // use self::fruits::PEAR as ???;
-    // use self::veggies::CUCUMBER as ???;
+    // 모듈 내부의 특정 경로를 use, as를 이용해 alians를 지정할 수 있음
+    // 모듈 외부에서 접근하는 변수, 함수는 pub 명시
+    pub use self::fruits::PEAR as fruit;
+    pub use self::veggies::CUCUMBER as veggie;
 
     mod fruits {
         pub const PEAR: &str = "Pear";
