@@ -1,22 +1,3 @@
-// This is a quiz for the following sections:
-// - Strings
-// - Vecs
-// - Move semantics
-// - Modules
-// - Enums
-//
-// Let's build a little machine in the form of a function. As input, we're going
-// to give a list of strings and commands. These commands determine what action
-// is going to be applied to the string. It can either be:
-// - Uppercase the string
-// - Trim the string
-// - Append "bar" to the string a specified amount of times
-//
-// The exact form of this will be:
-// - The input is going to be a Vector of 2-length tuples,
-//   the first element is the string, the second one is the command.
-// - The output element is going to be a vector of strings.
-
 enum Command {
     Uppercase,
     Trim,
@@ -26,18 +7,47 @@ enum Command {
 mod my_module {
     use super::Command;
 
-    // TODO: Complete the function as described above.
-    // pub fn transformer(input: ???) -> ??? { ??? }
+    fn upper(input: String) -> String {
+        input.to_uppercase().to_string()
+    }
+
+    fn trim(input: String) -> String {
+        input.trim().to_string()
+    }
+
+    fn append(input: String, size: usize) -> String {
+        let mut result = input;
+        for _i in 0..size {
+            result = format!("{}bar", result);
+        }
+        result
+    }
+
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> { 
+        // 가변 배열 선언
+        let mut results : Vec<String> = Vec::new();
+
+        // into_iter() : 소유권을 mov하며 순환
+        for (i, command) in input.into_iter() {
+           let mod_result = match command {
+                    Command::Uppercase => upper(i),
+                    Command::Trim => trim(i),
+                    Command::Append(size) => append(i, size),
+                };
+            results.push(mod_result);
+        }
+        results
+    }
 }
 
 fn main() {
-    // You can optionally experiment here.
 }
 
 #[cfg(test)]
 mod tests {
-    // TODO: What do we need to import to have `transformer` in scope?
-    // use ???;
+    
+    // 모듈 시스템 인식
+    use crate::my_module::transformer as transformer;
     use super::Command;
 
     #[test]
